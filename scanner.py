@@ -7,8 +7,8 @@ parser.add_argument("-p", "--payloads", help="payloads list", required=True)
 args = parser.parse_args()
 
 def fuzz(url, payloads):
-    payloads = open(payloads, "r").readlines()
-    for payload in payloads:
+    file = open(payloads, "r").readlines()
+    for payload in file:
         new_url = url.replace('{fuzz}', payload)
         request = requests.get(new_url)
         if request.elapsed.total_seconds > 7:
